@@ -1,0 +1,44 @@
+{
+  "name": "i-e-reporting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./iefrontend/src/index.js",
+  "scripts": {
+    "test": "test",
+    "build": "webpack --config webpack.config.js",
+    "watcg": "node ./iefrontend/src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KatyaEssina2/i-e-reporting.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KatyaEssina2/i-e-reporting/issues"
+  },
+  "homepage": "https://github.com/KatyaEssina2/i-e-reporting#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.1.0",
+    "babel-polyfill": "^6.26.0",
+    "react-scripts": "^3.4.3",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.2",
+    "browserify": "^16.5.2",
+    "envify": "^4.1.0",
+    "formik": "^2.1.5",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "yup": "^0.29.3"
+  }
+}

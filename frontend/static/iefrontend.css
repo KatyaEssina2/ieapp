@@ -1,0 +1,42 @@
+.nav-link {
+    padding: 1em;
+}
+
+.home-container {
+    min-height: 100vh;
+    min-width: 100vw;
+    text-align: center;
+}
+
+.home-header {
+    padding: 40px;
+    font-size: 40px;
+}
+
+.btn {
+    margin: 10px;
+    border-radius: 1.5rem !important;
+}
+
+.Login {
+    padding: 60px 0;
+}
+
+.Login form {
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.homeHeader {
+    display: flex !important;
+    justify-content: space-between;
+}
+
+.homeHeader > span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.hidden {
+    display: none;
+}
