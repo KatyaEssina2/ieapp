@@ -16,9 +16,13 @@ module.exports = {
     module: {
         // configuration regarding modules
         rules: [
+        { test: /\.css$/, loader: "style-loader!css-loader" },
+          { test: /\.png$/, loader: "url-loader?limit=100000" },
+          { test: /\.jpg$/, loader: "file-loader" },
             {
                 // regex test for js and jsx files
                 test: /\.(js|jsx)?$/,
+
                 // don't look in the node_modules/ folder
                 exclude: /node_modules/,
                 // for matching files, use the babel-loader

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import axiosInstance from "../axiosApi";
+import axiosAPI from "../axiosApi";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
+import {obtainToken, isAuthenticated} from '../authenticationApi'
 
 class Login extends Component {
     constructor(props) {
@@ -9,6 +10,7 @@ class Login extends Component {
         this.state = {username: "", password: "", redirectToReferrer: false};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        errors: {}
     }
 
     handleChange(event) {
@@ -18,15 +20,18 @@ class Login extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         try {
-            const response = await axiosInstance.post('/token/obtain/', {
-                username: this.state.username,
-                password: this.state.password
-            });
-            axiosInstance.defaults.headers['Authorization'] = "JWT " + response.data.access;
-            localStorage.setItem('access_token', response.data.access);
-            localStorage.setItem('refresh_token', response.data.refresh);
-            return response.data;
+            const response = await obtainToken (
+                this.state.username,
+                this.state.password
+            );
+            if (isAuthenticated()) {
+                this.setState({redirectToReferrer: true});
+            }
         } catch (error) {
+             this.setState({
+                errors: error.response.data
+            });
+            console.log(this.state.errors)
             throw error;
         }
     }
@@ -48,6 +53,10 @@ class Login extends Component {
                     </FormGroup>
                     <Button block size="large" type="submit">
                         Login
+                    </Button>
+                    <label>Need an account?</label>
+                    <Button variant="link" type="button" href="/signup/">
+                        Sign Up
                     </Button>
                 </form>
             </div>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axiosInstance from "../axiosApi";
 import { Button, FormGroup, FormControl, FormLabel, FormControlFeedback, Form, Col } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
 class Signup extends Component{
     constructor(props){
@@ -46,12 +47,13 @@ class Signup extends Component{
                 county: this.state.county,
                 postcode: this.state.postcode,
             });
-            return response;
+            if (response.status === 201) {
+                this.props.history.push('/login');
+            }
         } catch (error) {
              this.setState({
                 errors: error.response.data
             });
-            console.log(this.state.errors)
         }
     };
 

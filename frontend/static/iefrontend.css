@@ -14,7 +14,7 @@
 }
 
 .btn {
-    margin: 10px;
+    margin: 10px 0px;
     border-radius: 1.5rem !important;
 }
 
@@ -27,16 +27,90 @@
     max-width: 500px;
 }
 
-.homeHeader {
+.Home__header {
     display: flex !important;
     justify-content: space-between;
+    background-color: #202020;
+    color: white;
+    text-align: middle;
+    font-size: 32px;
+    letter-spacing: 2px;
+    padding: 5px 20px;
+    margin-bottom: 20px;
 }
 
-.homeHeader > span {
+header > span {
   display: inline-flex;
   align-items: center;
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.visible {
+    display: inline-block;
+}
+
+.ReportType {
+    display: inline-block
+}
+
+.ReportSection_header {
+    display: flex !important;
+    justify-content: space-between;
+}
+
+.ReportItem {
+    margin: 10px 0px;
+}
+
+.Home__container {
+    padding: 0px 40px;
+}
+
+.Home__subheader {
+    margin: 20px 0px;
+}
+
+.Report__card_hidden {
+    display: none !important;
+}
+
+.Report__card {
+    display: block !important;
+}
+
+.SubmittedReport__span {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    transition: color .15s;
+    margin-left: 10px;
+}
+
+.SubmittedReport__span.grade_A {
+    background-color: RGB(89, 154, 62);
+}
+
+.SubmittedReport__span.grade_B {
+    background-color: RGB(131, 187, 106);
+}
+
+.SubmittedReport__span.grade_C {
+    background-color: RGB(251, 210, 84);
+}
+
+.SubmittedReport__span.grade_D {
+    background-color: RGB(239, 133, 38);
+}
+
+.SubmittedReport__alert_span {
+    margin: 0px 10px;
 }
