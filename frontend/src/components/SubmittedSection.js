@@ -5,12 +5,16 @@ class SubmittedSection extends Component {
     render() {
         const { sectionType, items } = this.props;
         return (
-            <div className="ReportSection">
-                <header className="ReportSection_header">
-                    <span>{sectionType}</span>
+            <div className="ReportSection SubmittedSection">
+                <header className="ReportSection__header">
+                    <span>{sectionType.toUpperCase()}</span>
                 </header>
                <div>
-                    {items.map((item, index) => <div key={index}>{item.description + " - £" + item.amount}</div>)}
+                    {items.length ?
+                        items.map((item, index) =>
+                            <div className="SubmittedSection__item" key={index}>{item.description + " - £" + item.amount}</div>) :
+                        <div className="SubmittedSection__item">No Items</div>
+                    }
                </div>
             </div>
         );

@@ -35,13 +35,15 @@ class NewReport extends Component {
 
         return (
             <Card className={newReport ? "Report__card" : "Report__card_hidden"}>
-                <Card.Header>New Report</Card.Header>
                 <Card.Body>
+                    <header className="Signup__header">
+                        <span>NEW REPORT</span>
+                    </header>
                     <form id="report-form" onSubmit={submitReport}>
                         <Row>
                             <FormGroup as={Col} md="4">
-                                <FormLabel>
-                                    Select Month
+                                <FormLabel className="block ReportSection__header">
+                                    MONTH
                                 </FormLabel>
                                     <DatePicker
                                         name="month"
@@ -85,7 +87,7 @@ class NewReport extends Component {
                             </div>
                         </Row>
                         <Row>
-                            <Button block size="large" variant="danger" type="button" onClick={discardReport}>
+                            <Button block size="large" variant="secondary" type="button" onClick={discardReport}>
                                 Discard
                             </Button>
                             <Button block size="large" type="submit">

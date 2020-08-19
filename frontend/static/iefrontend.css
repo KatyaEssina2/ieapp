@@ -114,17 +114,16 @@ header > span {
     display: inline-block
 }
 
-.ReportSection_header {
-    display: flex !important;
-    justify-content: space-between;
+.addButton {
+    border-radius: 0.25rem !important;
+    margin: 0px 10px;
+    color: #202020 !important;
+    font-weight: 200 !important;
 }
+
 
 .ReportItem {
     margin: 10px 0px;
-}
-
-.Home__container {
-    padding: 0px 40px;
 }
 
 .Home__subheader {
@@ -137,6 +136,8 @@ header > span {
 
 .Report__card {
     display: block !important;
+    margin: 20px;
+
 }
 
 .SubmittedReport__span {
@@ -151,6 +152,8 @@ header > span {
     border-radius: .25rem;
     transition: color .15s;
     margin-left: 10px;
+    float: right;
+    color: #202020;
 }
 
 .SubmittedReport__span.grade_A {
@@ -173,10 +176,6 @@ header > span {
     margin: 0px 10px;
 }
 
-.ReportItem__remove {
-    margin: 0 5px 0 0 !important;
-}
-
 .Report__error {
     width: 100%;
     margin: 10px;
@@ -184,3 +183,73 @@ header > span {
     color: #dc3545;
 }
 
+.SubmittedReports {
+    background-color: RGB(175,204,234);
+    height: 100vh;
+    width: 100%;
+    overflow: auto;
+}
+
+.SubmittedReports__ul {
+    list-style-type: none;
+    padding: 10px 20px;
+}
+
+.SubmittedReports__ul > li {
+    margin: 20px 0px;
+}
+
+.SubmittedReports__ul__span {
+    color: white;
+    margin-right: 5px
+}
+
+#report-form {
+    padding: 10px
+}
+
+.ReportItem__remove_col {
+    padding: 0px !important;
+}
+
+.ReportItem__remove_col > .btn {
+    margin: 0px !important;
+}
+
+.block {
+    display: block;
+}
+
+.ReportSection__header {
+    font-size: 15px;
+    color: RGB(46, 81, 127);
+    letter-spacing: 2px;
+}
+
+.SubmittedReport__header {
+    background: white !important;
+    border: none !important;
+    font-size: 25px !important;
+    color: RGB(46, 81, 127);
+    letter-spacing: 2px;
+}
+
+.SubmittedReport {
+    cursor: pointer;
+    border: none !important;
+}
+
+.SubmittedSection__item {
+    padding: 10px;
+}
+
+.SubmittedSection {
+    margin-bottom: 20px
+}
+
+.Home__default_message {
+    margin-top: 20px;
+    font-size: 15px;
+    color: RGB(46, 81, 127);
+    letter-spacing: 2px;
+}

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import axiosAPI from "../axiosApi";
-import { Button, Navbar } from 'react-bootstrap';
+import { Button, Navbar, Col, Row } from 'react-bootstrap';
 import { isAuthenticated, logout } from '../authenticationApi'
 import NewReport from "./NewReport";
 import SubmittedReports from "./SubmittedReports";
+import SubmittedReportDetail from "./SubmittedReportDetail";
 import moment from 'moment';
 import { Redirect } from "react-router-dom";
 
@@ -18,7 +19,8 @@ function getDefaultState() {
             "Expenditure": ["input-0"],
             "Debt": ["input-0"]
         },
-        submittedReports: []
+        submittedReports: [],
+        viewingReport: false
     }
 }
 
@@ -93,8 +95,10 @@ class Home extends Component {
     postReportData = async (postData) => {
         try {
             const response = await axiosAPI.post('reports/create/', postData);
+
             if (response.status === 201) {
                 this.getSubmittedReports();
+                document.getElementById("report-form").reset();
                 this.setState({
                     inputs: {
                         "Income": ["input-0"],
@@ -102,17 +106,19 @@ class Home extends Component {
                         "Debt": ["input-0"]
                     },
                     newReport: false,
-                    errors: {}
+                    errors: {},
+                    viewingReport: false
                 });
-                document.getElementById("report-form").reset();
+
             } else if (response.status === 400) {
                 this.setState({errors: response.errors});
             }
         } catch(error) {
+            const response = error.response;
             const status = error.response.status;
             if (status === 400) {
                  this.setState({
-                    errors: error.response.data
+                    errors: response.data
                 });
             } else {
                 throw error;
@@ -140,7 +146,7 @@ class Home extends Component {
         });
     }
 
-    newReport = () => {
+    handleNewReport = () => {
         this.setState({newReport: true});
     }
 
@@ -165,13 +171,20 @@ class Home extends Component {
         this.getUserName();
     }
 
+    displayReport = (report) => {
+        this.setState({
+            newReport: false,
+            viewingReport: report
+        });
+    }
+
     render(){
 
-        const { isAuthed, name, submittedReports, newReport, errors, inputs } = this.state;
+        const { isAuthed, name, submittedReports, newReport, errors, inputs, viewingReport } = this.state;
 
         return (
             isAuthed ?
-                <div>
+                <div className="Home__container">
                     <Navbar bg="light" variant="light">
                         <Navbar.Text>
                             HELLO {name.toUpperCase()}
@@ -182,22 +195,33 @@ class Home extends Component {
                             </Navbar.Text>
                         </Navbar.Collapse>
                     </Navbar>
+                    <Row>
+                        <Col md="3">
+                            <SubmittedReports
+                                submittedReports={submittedReports}
+                                handleNewReport={this.handleNewReport}
+                                newReport={newReport}
+                                displayReport={this.displayReport}
+                                />
+                        </Col>
+                        <Col md="9">
+                            <div>
+                                { newReport ?
+                                    <NewReport
+                                        removeItem={this.removeItem}
+                                        discardReport={this.discardReport}
+                                        inputs={inputs} addItem={this.addItem}
+                                        submitReport={this.submitReport}
+                                        errors={errors}
+                                        newReport={newReport}/> :
+                                    (viewingReport ? <SubmittedReportDetail
+                                        viewingReport={viewingReport}/> :
+                                    <div className="Home__default_message">SELECT OR CREATE A REPORT</div>)
+                                }
 
-
-                    <div className="Home__container">
-                        <Button variant="light" className={
-                            newReport ? "hidden" : "visible"
-                        } onClick={this.newReport}>New Report</Button>
-                    <NewReport
-                        removeItem={this.removeItem}
-                        discardReport={this.discardReport}
-                        inputs={inputs} addItem={this.addItem}
-                        submitReport={this.submitReport}
-                        errors={errors}
-                        newReport={newReport}/>
-                    <header className="Home__subheader">Submitted Reports</header>
-                    <SubmittedReports submittedReports={submittedReports}/>
-                    </div>
+                            </div>
+                        </Col>
+                    </Row>
                 </div> :
                 <Redirect to="/login"/>
         );

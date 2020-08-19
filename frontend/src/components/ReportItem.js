@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {FormControl, Row, Col, Button} from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 class ReportItem extends Component {
@@ -29,11 +28,6 @@ class ReportItem extends Component {
         const amountName = sectionType + '-amount-' + input;
         return (
             <Row className="ReportItem">
-                <Col md="1">
-                    <Button variant="link" onClick={this.handleRemove} className="ReportItem__remove">
-                        <FontAwesomeIcon icon={faTrash} />
-                    </Button>
-                </Col>
                 <Col>
                     <FormControl name={descName} placeholder="Description"
                         className={
@@ -51,6 +45,11 @@ class ReportItem extends Component {
                     <div className={this.hasError(amountName) ? "invalid-feedback" : "hidden"}>
                         {this.hasError(amountName) ? this.getError(amountName) : '' }
                     </div>
+                </Col>
+                <Col md="1" className="ReportItem__remove_col">
+                    <Button variant="link" onClick={this.handleRemove} className="ReportItem__remove">
+                        <FontAwesomeIcon icon={faTrash} />
+                    </Button>
                 </Col>
             </Row>
         );

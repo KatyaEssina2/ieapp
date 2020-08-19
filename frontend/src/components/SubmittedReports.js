@@ -1,17 +1,26 @@
-import React, { Component } from "react";
-import { Card, Accordion } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Card, Button } from 'react-bootstrap';
 import SubmittedReport from './SubmittedReport';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 class SubmittedReports extends Component {
     render() {
-        const { submittedReports } = this.props;
+        const { newReport, handleNewReport, submittedReports, displayReport } = this.props;
         return (
-            submittedReports.length === 0 ?
-            <div>No submitted reports!</div> :
-            <Accordion defaultActiveKey="0">
-                {submittedReports.map((report, index) => <SubmittedReport key={index} index={index} report={report}/>)}
-            </Accordion>
+            <div className="SubmittedReports">
+                <ul className="SubmittedReports__ul">
+                    <li>
+                        <span className="SubmittedReports__ul__span">SUBMITTED REPORTS</span>
+                        <Button variant="light" className={
+                            newReport ? "hidden" : "visible"
+                        } onClick={handleNewReport} className="addButton">
+                            <FontAwesomeIcon icon={faPlus} />
+                        </Button>
+                    </li>
+                    {submittedReports.map((report, index) => <SubmittedReport displayReport={displayReport} key={index} index={index} report={report}/>)}
+                </ul>
+            </div>
         );
     }
 }

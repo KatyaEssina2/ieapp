@@ -3,8 +3,8 @@ import axios from 'axios'
 const accessToken = localStorage.getItem("access_token");
 var axiosAPI;
 
-//const baseURL = 'https://ieapp.herokuapp.com/api/';
-const baseURL = 'http://127.0.0.1:8000/api/';
+const baseURL = 'https://ieapp.herokuapp.com/api/';
+//const baseURL = 'http://127.0.0.1:8000/api/';
 
 
 axiosAPI = axios.create({
