@@ -32,7 +32,7 @@ class NewReport extends Component {
     render() {
 
         const { submitReport, discardReport, errors, newReport, addItem, removeItem, inputs } = this.props;
-
+        console.log(newReport)
         return (
             <Card className={newReport ? "Report__card" : "Report__card_hidden"}>
                 <Card.Body>
