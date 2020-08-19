@@ -1,5 +1,5 @@
 import React, { Component} from "react";
-import {Card, Accordion, Col, Row, Alert} from 'react-bootstrap';
+import { Card, Accordion, Col, Row, Alert } from 'react-bootstrap';
 import SubmittedSection from './SubmittedSection';
 import moment from 'moment';
 
@@ -30,7 +30,7 @@ class SubmittedReport extends Component {
     }
 
     render() {
-        const {report, index} = this.props;
+        const { report, index } = this.props;
         const grouped_report = groupBy(report.items, item => item.item_type);
         return (
             <Card>

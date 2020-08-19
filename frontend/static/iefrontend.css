@@ -2,13 +2,22 @@
     padding: 1em;
 }
 
-.home-container {
+.Home__container {
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.Home__landing_container {
     min-height: 100vh;
     min-width: 100vw;
     text-align: center;
 }
 
-.home-header {
+.Home__landing_container > .btn {
+    margin: 15px;
+}
+
+.Home__landing {
     padding: 40px;
     font-size: 40px;
 }
@@ -25,6 +34,55 @@
 .Login form {
     margin: 0 auto;
     max-width: 500px;
+}
+
+.Signup {
+    background: linear-gradient(to top left, rgb(175,204,234), rgb(236,244,249));
+}
+
+.Signup form {
+    padding: 15px 30px;
+    margin: 0 auto;
+    max-width: 700px;
+    background-color: #F8F8F8
+}
+
+.Signup__header {
+    margin: 20px 0px;
+}
+
+.Signup__header > span {
+    font-size: 30px;
+    color: RGB(46, 81, 127);
+    letter-spacing: 2px;
+}
+
+.Signup__logo {
+    height: 7vh;
+    float: right;
+}
+
+.Login__logo_container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    height: 20vh;
+}
+
+.Login__header {
+    text-align: center;
+    font-size: 30px;
+    color: RGB(46, 81, 127);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.Login__logo {
+    height: 20vh;
+}
+
+.form_footer {
+    text-align: center;
 }
 
 .Home__header {
@@ -114,3 +172,15 @@ header > span {
 .SubmittedReport__alert_span {
     margin: 0px 10px;
 }
+
+.ReportItem__remove {
+    margin: 0 5px 0 0 !important;
+}
+
+.Report__error {
+    width: 100%;
+    margin: 10px;
+    font-size: 80%;
+    color: #dc3545;
+}
+

@@ -43,3 +43,21 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
+
+    def update(self, instance, validated_data):
+        instance.first_name = validated_data.get('first_name', instance.first_name)
+        instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.email = validated_data.get('email', instance.email)
+        instance.username = validated_data.get('username', instance.username)
+        instance.password = validated_data.get('password', instance.password)
+        instance.dob = validated_data.get('dob', instance.dob)
+        instance.phone_number = validated_data.get('phone_number', instance.phone_number)
+        instance.address_1 = validated_data.get('address_1', instance.address_1)
+        instance.address_2 = validated_data.get('address_2', instance.address_2)
+        instance.city = validated_data.get('city', instance.city)
+        instance.county = validated_data.get('county', instance.county)
+        instance.postcode = validated_data.get('postcode', instance.postcode)
+
+        instance.save()
+
+        return instance

@@ -21,16 +21,13 @@ class Signup extends Component{
             postcode:"",
             errors: {}
         };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
+    handleChange = (event) => {
         this.setState({[event.target.name]: event.target.value});
     }
 
-    async handleSubmit(event) {
+    handleSubmit = async (event) => {
         event.preventDefault();
         try {
             const response = await axiosInstance.post('/user/create/', {
@@ -55,16 +52,21 @@ class Signup extends Component{
                 errors: error.response.data
             });
         }
-    };
+    }
 
-    hasError(key) {
+    hasError = (key) => {
         return key in this.state.errors;
     }
 
     render() {
+        const { errors } = this.state;
         return (
-            <div className="Login">
+            <div className="Signup">
                 <Form onSubmit={this.handleSubmit}>
+                    <header className="Signup__header">
+                        <span>SIGN UP</span>
+                        <img src="../../static/images/main_logo.png" className="Signup__logo"/>
+                    </header>
                     <Form.Row>
                         <FormGroup as={Col} md="6">
                             <FormLabel>First name</FormLabel>
@@ -74,7 +76,7 @@ class Signup extends Component{
                                 }
                                 value={this.state.first_name} onChange={this.handleChange}/>
                             <div className={this.hasError("first_name") ? "invalid-feedback" : "hidden"}>
-                                {this.hasError("first_name") ? this.state.errors.first_name : '' }
+                                {this.hasError("first_name") ? errors.first_name : '' }
                             </div>
                         </FormGroup>
                         <FormGroup as={Col} md="6">
@@ -85,7 +87,7 @@ class Signup extends Component{
                                 }
                                 value={this.state.last_name} onChange={this.handleChange}/>
                             <div className={this.hasError("last_name") ? "invalid-feedback" : "hidden"}>
-                                {this.hasError("last_name") ? this.state.errors.last_name : '' }
+                                {this.hasError("last_name") ? errors.last_name : '' }
                             </div>
                         </FormGroup>
                     </Form.Row>
@@ -98,7 +100,7 @@ class Signup extends Component{
                                 }
                                 value={this.state.username} onChange={this.handleChange}/>
                             <div className={this.hasError("username") ? "invalid-feedback" : "hidden"}>
-                                {this.hasError("username") ? this.state.errors.username : '' }
+                                {this.hasError("username") ? errors.username : '' }
                             </div>
                         </FormGroup>
                         <FormGroup as={Col} md="6">
@@ -109,7 +111,7 @@ class Signup extends Component{
                                 }
                                 value={this.state.password} onChange={this.handleChange}/>
                             <div className={this.hasError("password") ? "invalid-feedback" : "hidden"}>
-                                {this.hasError("password") ? this.state.errors.password : '' }
+                                {this.hasError("password") ? errors.password : '' }
                             </div>
                         </FormGroup>
                     </Form.Row>
@@ -122,7 +124,7 @@ class Signup extends Component{
                                 }
                               value={this.state.email} onChange={this.handleChange}/>
                             <div className={this.hasError("email") ? "invalid-feedback" : "hidden"}>
-                                {this.hasError("email") ? this.state.errors.email : '' }
+                                {this.hasError("email") ? errors.email : '' }
                             </div>
                         </FormGroup>
                     </Form.Row>
@@ -135,7 +137,7 @@ class Signup extends Component{
                                 }
                               value={this.state.dob} onChange={this.handleChange}/>
                             <div className={this.hasError("dob") ? "invalid-feedback" : "hidden"}>
-                                {this.hasError("dob") ? this.state.errors.dob : '' }
+                                {this.hasError("dob") ? errors.dob : '' }
                             </div>
                         </FormGroup>
                         <FormGroup as={Col} md="6">
@@ -146,7 +148,7 @@ class Signup extends Component{
                                 }
                               value={this.state.phone_number} onChange={this.handleChange}/>
                             <div className={this.hasError("phone_number") ? "invalid-feedback" : "hidden"}>
-                                {this.hasError("phone_number") ? this.state.errors.phone_number : '' }
+                                {this.hasError("phone_number") ? errors.phone_number : '' }
                             </div>
                         </FormGroup>
                     </Form.Row>
@@ -158,7 +160,7 @@ class Signup extends Component{
                                 }
                               value={this.state.address_1} onChange={this.handleChange}/>
                             <div className={this.hasError("address_1") ? "invalid-feedback" : "hidden"}>
-                                {this.hasError("address_1") ? this.state.errors.address_1 : '' }
+                                {this.hasError("address_1") ? errors.address_1 : '' }
                             </div>
                     </FormGroup>
                     <FormGroup>
@@ -169,7 +171,7 @@ class Signup extends Component{
                                 }
                               value={this.state.address_2} onChange={this.handleChange}/>
                             <div className={this.hasError("address_2") ? "invalid-feedback" : "hidden"}>
-                                {this.hasError("address_2") ? this.state.errors.address_2 : '' }
+                                {this.hasError("address_2") ? errors.address_2 : '' }
                             </div>
                     </FormGroup>
                     <Form.Row>
@@ -181,7 +183,7 @@ class Signup extends Component{
                                 }
                               value={this.state.city} onChange={this.handleChange}/>
                             <div className={this.hasError("city") ? "invalid-feedback" : "hidden"}>
-                                {this.hasError("city") ? this.state.errors.city : '' }
+                                {this.hasError("city") ? errors.city : '' }
                             </div>
                         </FormGroup>
                        <FormGroup as={Col}>
@@ -192,7 +194,7 @@ class Signup extends Component{
                                 }
                               value={this.state.county} onChange={this.handleChange}/>
                             <div className={this.hasError("county") ? "invalid-feedback" : "hidden"}>
-                                {this.hasError("county") ? this.state.errors.county : '' }
+                                {this.hasError("county") ? errors.county : '' }
                             </div>
                         </FormGroup>
                        <FormGroup as={Col}>
@@ -203,20 +205,23 @@ class Signup extends Component{
                                 }
                               value={this.state.postcode} onChange={this.handleChange}/>
                             <div className={this.hasError("postcode") ? "invalid-feedback" : "hidden"}>
-                                {this.hasError("postcode") ? this.state.errors.postcode : '' }
+                                {this.hasError("postcode") ? errors.postcode : '' }
                             </div>
                         </FormGroup>
                     </Form.Row>
-                <Button block size="large" type="submit">
-                    Sign Up
-                </Button>
-                <label>Already have an account?</label>
-                <Button variant="link" type="button" href="/login/">
-                    Log In
-                </Button>
-            </Form>
-        </div>);
-    };
+                    <Button block size="large" type="submit">
+                        Sign Up
+                    </Button>
+                    <div className="form_footer">
+                        <label>Already have an account?</label>
+                        <Button variant="link" type="button" href="/login/">
+                            Log In
+                        </Button>
+                    </div>
+                </Form>
+            </div>
+        );
+    }
 };
 
 export default Signup;

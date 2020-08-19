@@ -1,11 +1,13 @@
 import axios from 'axios'
 
-//const baseURL = 'http://127.0.0.1:8000/api/'
 const accessToken = localStorage.getItem("access_token");
+var axiosAPI;
 
-const baseURL = 'https://ieapp.herokuapp.com/api/'
+//const baseURL = 'https://ieapp.herokuapp.com/api/';
+const baseURL = 'http://127.0.0.1:8000/api/';
 
-const axiosAPI = axios.create({
+
+axiosAPI = axios.create({
     baseURL: baseURL,
     timeout: 5000,
     headers: {
@@ -14,7 +16,6 @@ const axiosAPI = axios.create({
         'accept': 'application/json'
     }
 });
-
 
 axiosAPI.interceptors.response.use(
     (response) => response,

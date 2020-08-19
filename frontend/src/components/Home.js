@@ -1,41 +1,35 @@
 import React, { Component } from "react";
 import axiosAPI from "../axiosApi";
-import {Button} from 'react-bootstrap';
-import {isAuthenticated, logout} from '../authenticationApi'
-import Report from "./Report";
+import { Button, Navbar } from 'react-bootstrap';
+import { isAuthenticated, logout } from '../authenticationApi'
+import NewReport from "./NewReport";
 import SubmittedReports from "./SubmittedReports";
 import moment from 'moment';
-
-const defaultInputs = {
-    "Income": ["input-0"],
-    "Expenditure": ["input-0"],
-    "Debt": ["input-0"]
-}
+import { Redirect } from "react-router-dom";
 
 function getDefaultState() {
     return {
-        message: "",
+        name: "",
         isAuthed: isAuthenticated(),
         newReport: false,
         errors: {},
-        inputs: defaultInputs,
+        inputs: {
+            "Income": ["input-0"],
+            "Expenditure": ["input-0"],
+            "Debt": ["input-0"]
+        },
         submittedReports: []
     }
 }
 
-class Hello extends Component {
+class Home extends Component {
 
     constructor(props) {
         super(props);
         this.state = getDefaultState();
-        this.handleLogout = this.handleLogout.bind(this);
-        this.addItem = this.addItem.bind(this);
-        this.submitReport = this.submitReport.bind(this);
-        this.newReport = this.newReport.bind(this);
-        this.discardReport = this.discardReport.bind(this);
     }
 
-    handleLogout() {
+    handleLogout = () => {
         try {
            logout();
            this.setState({isAuthed: false});
@@ -44,12 +38,12 @@ class Hello extends Component {
         }
     }
 
-    async getSubmittedReports() {
+    getSubmittedReports = async () => {
         const response = await axiosAPI.get('reports/');
         this.setState({submittedReports: response.data});
     }
 
-    submitReport(event) {
+    submitReport = (event) => {
         event.preventDefault();
         let errors = {};
         let postData = {"items": []};
@@ -58,22 +52,20 @@ class Hello extends Component {
         if (data.get("month") === "") {
             errors["month"] = "Please select a month";
         } else {
-            postData["month"] = moment("01/" + data.get("month")).format('YYYY-MM-DD');;
+            postData["month"] = moment("01/" + data.get("month")).format('YYYY-MM-DD');
         }
         for (var [key, value] of data.entries()) {
             if (key !== 'month') {
                 if (value !== "") {
                     let keyData = key.split('-');
-                    console.log(key)
                     let itemType = keyData[0];
                     let valueType = keyData.[1];
                     let itemIndex = keyData[3];
 
-                    let itemKey = `${itemType}-${itemIndex}`
+                    let itemKey = `${itemType}-${itemIndex}`;
                     let altValueType = valueType == 'description' ? 'amount' : 'description';
-
-                    if (data.get(`${itemType}-${altValueType}-{itemIndex}`) === "") {
-                        errors[`${itemType}-${altValueType}-{itemIndex}`] = `Please fill the ${valueType}`
+                    if (data.get(`${itemType}-${altValueType}-input-${itemIndex}`) === "") {
+                        errors[`${itemType}-${altValueType}-input-${itemIndex}`] = `Please fill the ${valueType}`;
                     } else if (valueType === 'amount' && isNaN(value)) {
                         errors[key] = "Amount must be a number";
                     } else {
@@ -92,25 +84,43 @@ class Hello extends Component {
             Object.keys(items).forEach(function(key) {
                 postData["items"].push(items[key]);
             });
-
             this.postReportData(postData);
-            this.setState({newReport: false});
-
         } else {
             this.setState({errors: errors});
         }
     }
 
-    async postReportData(postData) {
-        const response = await axiosAPI.post('reports/create/', postData);
-        if (response.status === 201) {
-            this.getSubmittedReports();
-            this.setState({inputs: defaultInputs})
-        };
-        this.setState({newReport: false});
+    postReportData = async (postData) => {
+        try {
+            const response = await axiosAPI.post('reports/create/', postData);
+            if (response.status === 201) {
+                this.getSubmittedReports();
+                this.setState({
+                    inputs: {
+                        "Income": ["input-0"],
+                        "Expenditure": ["input-0"],
+                        "Debt": ["input-0"]
+                    },
+                    newReport: false,
+                    errors: {}
+                });
+                document.getElementById("report-form").reset();
+            } else if (response.status === 400) {
+                this.setState({errors: response.errors});
+            }
+        } catch(error) {
+            const status = error.response.status;
+            if (status === 400) {
+                 this.setState({
+                    errors: error.response.data
+                });
+            } else {
+                throw error;
+            }
+        }
     }
 
-    addItem(sectionType) {
+    addItem = (sectionType) => {
         var inputs = this.state.inputs;
         var newInput = `input-${inputs[sectionType].length}`;
         inputs[sectionType] = [ ...inputs[sectionType], newInput ];
@@ -119,50 +129,79 @@ class Hello extends Component {
         });
     }
 
-    newReport() {
-        this.setState({newReport: true});
-    }
-
-    discardReport() {
+    removeItem = (input, sectionType) => {
+        var inputs = this.state.inputs;
+        const index = inputs[sectionType].indexOf(input);
+        if (index > -1) {
+            inputs[sectionType].splice(index, 1);
+        }
         this.setState({
-            newReport: false,
-            inputs: defaultInputs
+            inputs: inputs,
         });
     }
 
-    componentDidMount() {
+    newReport = () => {
+        this.setState({newReport: true});
+    }
+
+    discardReport = () => {
+        this.setState({
+            newReport: false,
+            inputs: {
+                "Income": ["input-0"],
+                "Expenditure": ["input-0"],
+                "Debt": ["input-0"]
+            },
+        });
+    }
+
+    getUserName = async () => {
+        const response = await axiosAPI.get('user/name');
+        this.setState({name: response.data["name"]});
+    }
+
+    componentDidMount = () => {
         this.getSubmittedReports();
+        this.getUserName();
     }
 
     render(){
 
-        const {isAuthed, message, submittedReports, newReport, errors, inputs} = this.state;
+        const { isAuthed, name, submittedReports, newReport, errors, inputs } = this.state;
 
         return (
             isAuthed ?
-            <div>
-                <header className="Home__header">
-                    <span>
-                        Hello  {message}
-                    </span>
-                    <Button className="logoutBtn" variant="light" onClick={this.handleLogout}>Logout</Button>
-               </header>
-                <div className="Home__container">
-                   <Button variant="light" className={
-                        newReport ? "hidden" : "visible"
-                   } onClick={this.newReport}>New Report</Button>
-                   <Report discardReport={this.discardReport} inputs={inputs} addItem={this.addItem} submitReport={this.submitReport} errors={errors} newReport={newReport}/>
+                <div>
+                    <Navbar bg="light" variant="light">
+                        <Navbar.Text>
+                            HELLO {name.toUpperCase()}
+                        </Navbar.Text>
+                        <Navbar.Collapse className="justify-content-end">
+                            <Navbar.Text>
+                            <a href="#" onClick={this.handleLogout}>LOG OUT</a>
+                            </Navbar.Text>
+                        </Navbar.Collapse>
+                    </Navbar>
+
+
+                    <div className="Home__container">
+                        <Button variant="light" className={
+                            newReport ? "hidden" : "visible"
+                        } onClick={this.newReport}>New Report</Button>
+                    <NewReport
+                        removeItem={this.removeItem}
+                        discardReport={this.discardReport}
+                        inputs={inputs} addItem={this.addItem}
+                        submitReport={this.submitReport}
+                        errors={errors}
+                        newReport={newReport}/>
                     <header className="Home__subheader">Submitted Reports</header>
-                   <SubmittedReports submittedReports={submittedReports}/>
-                </div>
-            </div> :
-            <div className="home-container">
-                <header className="home-header">Welcome</header>
-                <Button variant="info" size="lg" href="/signup/">Sign Up</Button>
-                <Button variant="outline-info" size="lg" href="/login/">Log In</Button>
-            </div>
+                    <SubmittedReports submittedReports={submittedReports}/>
+                    </div>
+                </div> :
+                <Redirect to="/login"/>
         );
     }
 }
 
-export default Hello;
+export default Home;

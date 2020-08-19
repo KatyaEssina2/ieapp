@@ -19,9 +19,14 @@ class CustomUserCreate(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class HelloWorldView(APIView):
+class Home(APIView):
+    def get(self):
+        return Response(status=status.HTTP_200_OK)
+
+
+class UserName(APIView):
     def get(self, request):
-        return Response(data={"user": f'{request.user.first_name} {request.user.last_name}'}, status=status.HTTP_200_OK)
+        return Response(data={"name": f'{request.user.first_name} {request.user.last_name}'}, status=status.HTTP_200_OK)
 
 
 class LogoutAndBlacklistRefreshTokenForUserView(APIView):

@@ -31,9 +31,10 @@ class ReportSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         item_data = validated_data.pop('items')
         user = CustomUser.objects.get(pk=self.context.get('user_pk'))
-        report = Report.objects.create(user=user, **validated_data)
-        for item in item_data:
-            ReportItem.objects.create(report=report, **item)
-        return report
-
+        if item_data:
+            report = Report.objects.create(user=user, **validated_data)
+            for item in item_data:
+                ReportItem.objects.create(report=report, **item)
+            return report
+        raise serializers.ValidationError('Please add a report item or discard the report.')
 
