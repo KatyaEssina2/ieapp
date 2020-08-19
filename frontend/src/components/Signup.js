@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axiosInstance from "../axiosApi";
 import { Button, FormGroup, FormControl, FormLabel, FormControlFeedback, Form, Col } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 class Signup extends Component{
     constructor(props){
@@ -45,6 +46,11 @@ class Signup extends Component{
                 postcode: this.state.postcode,
             });
             if (response.status === 201) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Redirecting to login',
+                    icon: 'success',
+                })
                 this.props.history.push('/login');
             }
         } catch (error) {

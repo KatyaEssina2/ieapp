@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="385465c4-f507-410e-9a97-d8070e9c65e2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/SubmittedReportDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authentication/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/axiosApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/axiosApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/NewReport.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NewReport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ReportItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ReportItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ReportSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ReportSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/SubmittedReport.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SubmittedReport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/SubmittedReports.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SubmittedReports.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/SubmittedSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SubmittedSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/iefrontend.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/iefrontend.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Signup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/static/public/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/public/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/static/sidebar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,15 +17,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/components/Home.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="103" column="44" selection-start-line="103" selection-start-column="44" selection-end-line="103" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/SubmittedSection.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -90,8 +74,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/src/axiosApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+            <state relative-caret-position="240">
+              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/authentication/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -99,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/Signup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -181,8 +177,6 @@
         <option value="$PROJECT_DIR$/iereport/views.py" />
         <option value="$PROJECT_DIR$/.babelrc" />
         <option value="$PROJECT_DIR$/authentication/views.py" />
-        <option value="$PROJECT_DIR$/authentication/urls.py" />
-        <option value="$PROJECT_DIR$/frontend/src/components/Signup.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/Login.js" />
         <option value="$PROJECT_DIR$/frontend/static/sidebar.css" />
         <option value="$PROJECT_DIR$/frontend/src/components/NewReport.js" />
@@ -194,6 +188,8 @@
         <option value="$PROJECT_DIR$/frontend/src/components/SubmittedReports.js" />
         <option value="$PROJECT_DIR$/frontend/static/iefrontend.css" />
         <option value="$PROJECT_DIR$/frontend/src/components/SubmittedReport.js" />
+        <option value="$PROJECT_DIR$/authentication/urls.py" />
+        <option value="$PROJECT_DIR$/frontend/src/components/Signup.js" />
         <option value="$PROJECT_DIR$/frontend/src/axiosApi.js" />
       </list>
     </option>
@@ -315,11 +311,11 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28118393" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28118393" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" weight="0.3292683" />
       <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" sideWeight="0.4987745" visible="true" weight="0.32971507" />
+      <window_info active="true" anchor="bottom" id="Terminal" sideWeight="0.4987745" visible="true" weight="0.32971507" />
       <window_info anchor="bottom" id="Event Log" sideWeight="0.5012255" side_tool="true" weight="0.4506024" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -609,16 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/authentication/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/Login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="564">
@@ -668,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/Signup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/NewReport.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -717,10 +696,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/Signup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/authentication/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/axiosApi.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+        <state relative-caret-position="240">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
         </state>
       </provider>
     </entry>
