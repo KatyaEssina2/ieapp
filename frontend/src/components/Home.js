@@ -105,6 +105,7 @@ class Hello extends Component {
         const response = await axiosAPI.post('reports/create/', postData);
         if (response.status === 201) {
             this.getSubmittedReports();
+            this.setState({inputs: defaultInputs})
         };
         this.setState({newReport: false});
     }

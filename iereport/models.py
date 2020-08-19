@@ -27,9 +27,9 @@ class Report(models.Model):
     def grade(self):
         if self.rating < 10:
             return "A"
-        elif 10 >= self.rating > 30:
+        elif 10 <= self.rating < 30:
             return "B"
-        elif 30 >= self.rating > 50:
+        elif 30 <= self.rating < 50:
             return "C"
         else:
             return "D"
