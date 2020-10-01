@@ -1,7 +1,14 @@
-venv
 *.pyc
 staticfiles
+env
 .env
 db.sqlite3
 __pycache__/
 node_modules
+workspace.xml
+usage.statistics.xml
+tasks.xml3^
+.coverage
+.idea
+.vscode
+.idea
