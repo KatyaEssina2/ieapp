@@ -5,7 +5,7 @@ admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('authentication.urls')),
-    path('api/reports/', include('iereport.urls')),
-    path('', include('frontend.urls'))
+    path('api/', include(('authentication.urls', 'authentication'), namespace='authentication')),
+    path('api/reports/', include(('iereport.urls', 'iereport'), namespace='iereport')),
+    path('', include(('frontend.urls', 'frontend'), namespace='frontend')),
 ]

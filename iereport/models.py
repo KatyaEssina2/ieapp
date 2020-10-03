@@ -6,10 +6,12 @@ from django.db.models.functions import Coalesce
 
 class Report(models.Model):
     month = models.DateField()
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='reports')
+    user = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="reports"
+    )
 
     def __str__(self):
-        return f'{self.user} - {self.month}'
+        return f"{self.user} - {self.month}"
 
     @property
     def rating(self):
@@ -21,7 +23,7 @@ class Report(models.Model):
                 debt += item.amount
             elif item.item_type == "Income":
                 income += item.amount
-        return round(debt/income * 100) if income else 0
+        return round(debt / income * 100) if income else 0
 
     @property
     def grade(self):
@@ -36,17 +38,21 @@ class Report(models.Model):
 
     @property
     def disposable_income(self):
-        money_out = self.items.filter(item_type__in=['Debt', 'Expenditure']).aggregate(sum=Coalesce(Sum('amount'), 0))
-        money_in = self.items.filter(item_type='Income').aggregate(sum=Coalesce(Sum('amount'), 0))
+        money_out = self.items.filter(item_type__in=["Debt", "Expenditure"]).aggregate(
+            sum=Coalesce(Sum("amount"), 0)
+        )
+        money_in = self.items.filter(item_type="Income").aggregate(
+            sum=Coalesce(Sum("amount"), 0)
+        )
 
-        return round(money_in['sum'] - money_out['sum'])
+        return round(money_in["sum"] - money_out["sum"])
 
 
 class ReportItem(models.Model):
     item_type = models.CharField(CustomUser, max_length=25)
     description = models.CharField(CustomUser, max_length=255)
     amount = models.IntegerField()
-    report = models.ForeignKey(Report, on_delete=models.CASCADE, related_name='items')
+    report = models.ForeignKey(Report, on_delete=models.CASCADE, related_name="items")
 
     def __str__(self):
-        return f'{self.item_type} {self.description} - £{self.amount}'
+        return f"{self.item_type} {self.description} - £{self.amount}"
