@@ -31,6 +31,5 @@
 
 
 ### Next steps:
- - API test suite
- - Front end test suite
+ - Front end tests
  - Email validation
